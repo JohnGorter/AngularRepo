@@ -1,0 +1,51 @@
+<h1>Datepicker: Contacts</h1>
+
+<form (submit)="addContact()">
+	<div>
+		<label for="firstName">First name:</label>
+		<input type="text" id="firstName" name="firstName" [(ngModel)]="newContact.firstName">
+	</div>
+	<div>
+		<label for="surname">Surname:</label>
+		<input type="text" id="surname" name="surname" [(ngModel)]="newContact.surname">
+	</div>
+	<div>
+		<label for="email">E-mail address:</label>
+		<input type="text" id="email" name="email" [(ngModel)]="newContact.email">
+	</div>
+
+	<button>Add contact</button>
+</form>
+
+<h2>The contacts</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>E-mail address</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let contact of contacts">
+			<td>
+				<div *ngIf="!contact.editing">{{contact | contactName}}</div>
+				<div *ngIf="contact.editing">
+					<input type="text" [(ngModel)]="contact.firstName">
+					<input type="text" [(ngModel)]="contact.surname">
+				</div>
+			</td>
+			<td>
+				<div *ngIf="!contact.editing">{{contact.email}}</div>
+				<div *ngIf="contact.editing"><input type="text" [(ngModel)]="contact.email"></div>
+			</td>
+			<td>
+				<div *ngIf="!contact.editing">				
+					<a href="#" (click)="editContact(contact)">Edit</a>
+					<a href="#" (click)="deleteContact(contact)">Delete</a>
+				</div>
+				<a href="#" (click)="saveContact(contact)" *ngIf="contact.editing">Save</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

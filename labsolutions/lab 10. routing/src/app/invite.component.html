@@ -1,0 +1,30 @@
+<h2>Invite people</h2>
+
+<form [formGroup]="inviteForm">
+	<div>
+		<label for="event">Event:</label>
+		<input type="text" id="event" formControlName="event">
+	</div>
+	<div formArrayName="dates">
+		<div *ngFor="let filler of nrOfPossibleDatesArray; let i = index" [formGroupName]="i">
+			<label [for]="'event_' + i">Dates #{{i + 1}}:</label>
+			<input type="date" [id]="'event_' + i" formControlName="date">
+		</div>
+	</div>
+	<div formArrayName="contacts">
+		<ul>
+			<li *ngFor="let contact of contacts; let i = index" [formGroupName]="i">
+				<input type="hidden" formControlName="id">
+				<input type="checkbox" formControlName="selected">
+				{{contact | contactName}}
+			</li>
+		</ul>
+	</div>
+
+	<button (click)="invite()">Invite!</button>
+</form>
+
+<br><br>
+
+Form value:
+<pre>{{inviteForm.value | json}}</pre>

@@ -1,0 +1,17 @@
+https://angular.io/docs/ts/latest/guide/cheatsheet.html
+
+1. Angular
+   - waarom
+   - wat
+   - HelloWorld component
+   - ngIf
+   + contacten in tabel
+2. Pipes - Yoeri
+   
+4. Forms
+
+6. Components
+7. Backend communication
+8. Routing
+9. Services
+10. Asynchronous stuff -> misschien vervangen door advanced DI?

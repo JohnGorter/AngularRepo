@@ -1,0 +1,33 @@
+{
+  "name": "angular-2",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {  },
+  "devDependencies": {
+    "cross-spawn": "^5.1.0",
+    "directory-tree": "^1.2.0",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-template": "^4.0.0",
+    "gulp-watch": "^4.3.11",
+    "gulp-connect": "^5.0.0",
+    "opn": "^4.0.2",
+    "portastic": "1.0.1"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+	"scripts": {
+		"postinstall": "bower install && npm run link && npm run generatelabs",
+		"link" : "npm link ./modules/foreacher && npm link ./modules/pdfgenerator",
+		"start": "gulp serve",
+		"help": "node printhelp.js",
+		"build": "gulp build",
+		"presentation": "gulp serve",
+		"generatelabs": "pdfgenerator ./labs",
+		"updateslides": "node updateslides.js",
+		"push": "node push.js",
+		"all": "npm run generatelabs && npm run push && npm run updateslides && npm run presentation"
+	}
+}
+

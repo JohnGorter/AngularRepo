@@ -1,0 +1,75 @@
+<div class="flex">
+	<form (submit)="addContact(f)" #f="ngForm" novalidate>
+		<h2>Template-driven form (FormsModule)</h2>
+
+		<div>
+			<label for="td-firstName">First name:</label>
+			<input type="text" 
+				   id="td-firstName" 
+				   name="firstName"
+				   required
+				   pattern="^[a-zA-Z -]+$" 
+				   [(ngModel)]="newContact.firstName" 
+				   #firstName="ngModel">
+			<span *ngIf="firstName.touched && firstName.invalid">*</span>
+			<span *ngIf="firstName.touched && firstName.errors?.required">Vul in aub</span>
+			<span *ngIf="firstName.touched && firstName.errors?.pattern">Alleen letters graag</span>
+		</div>
+		<div>
+			<label for="td-surname">Surname:</label>
+			<input type="text" 
+			       id="td-surname" 
+				   name="surname" 
+				   required
+				   pattern="^[a-zA-Z -]+$" 
+				   [(ngModel)]="newContact.surname" 
+				   #surname="ngModel">
+			<span *ngIf="surname.touched && surname.invalid">*</span>
+			<span *ngIf="surname.touched && surname.errors?.required">Vul in aub</span>
+			<span *ngIf="surname.touched && surname.errors?.pattern">Alleen letters graag</span>
+		</div>
+		<div>
+			<label for="td-email">E-mail address:</label>
+			<input type="text" 
+			       id="td-email" 
+				   name="email" 
+				   required
+				   pattern="^.+@.+\.[a-zA-Z]+$"
+				   [(ngModel)]="newContact.email" 
+				   #email="ngModel">
+			<span *ngIf="email.touched && email.invalid">*</span>
+			<span *ngIf="email.touched && email.errors?.required">Vul in aub</span>
+			<span *ngIf="email.touched && email.errors?.pattern">Een echt e-mailadres graag</span>
+		</div>
+
+		<button [disabled]="f.invalid">Add contact</button>
+	</form>
+
+	<form (submit)="addContactReactive()" [formGroup]="addContactForm" novalidate id="reactive-form">
+		<h2>Model-driven form (ReactiveFormsModule)</h2>
+
+		<div>
+			<label for="rfm-firstName">First name:</label>
+			<input type="text" id="rfm-firstname" formControlName="firstName">
+			<span *ngIf="addContactForm.get('firstName').touched && addContactForm.get('firstName').invalid">*</span>
+			<span *ngIf="addContactForm.get('firstName').touched && addContactForm.get('firstName').errors?.required">Vul in aub</span>
+			<span *ngIf="addContactForm.get('firstName').touched && addContactForm.get('firstName').errors?.pattern">Alleen letters graag</span>
+		</div>
+		<div>
+			<label for="rfm-surname">Surname:</label>
+			<input type="text" id="rfm-surname" formControlName="surname">
+			<span *ngIf="addContactForm.get('surname').touched && addContactForm.get('surname').invalid">*</span>
+			<span *ngIf="addContactForm.get('surname').touched && addContactForm.get('surname').errors?.required">Vul in aub</span>
+			<span *ngIf="addContactForm.get('surname').touched && addContactForm.get('surname').errors?.pattern">Alleen letters graag</span>
+		</div>
+		<div>
+			<label for="rfm-email">E-mail address:</label>
+			<input type="text" id="rfm-email" formControlName="email">
+			<span *ngIf="addContactForm.get('email').touched && addContactForm.get('email').invalid">*</span>
+			<span *ngIf="addContactForm.get('email').touched && addContactForm.get('email').errors?.required">Vul in aub</span>
+			<span *ngIf="addContactForm.get('email').touched && addContactForm.get('email').errors?.email">Een echt e-mailadres graag</span>
+		</div>
+
+		<button [disabled]="addContactForm.invalid">Add contact</button>
+	</form>
+</div>
