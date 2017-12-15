@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+      * { --main-color:green}
+    </style>
+    <H1>BLAAA</H1>
+    <div id="myhost">
+
+    </div>
+    <script>
+    var root = document.querySelector("#myhost").attachShadow({mode:'open'});
+    root.innerHTML = `
+    <style>
+          h1 { color:var(--main-color, red) }
+                .whatever { background-color:var(--main-bg-color, red)}
+            </style>
+            <h1>WHAT A NICE DAY</h1>
+        <div class="whatever">wat tekst</div>`;
+
+    </script>
+</body>
+</html>
